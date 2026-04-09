@@ -2,9 +2,11 @@
 
 ---
 
+---
+
 ## 🗄️ Phase 1 — SQL Proficiency
 
-**Tool Used:** MySQL Workbench
+**Tool Used:** Postgresql pgadmin
 
 ### Part A: Hotel Management System
 - Created tables for `users`, `bookings`, `booking_commercials`, and `items`
@@ -31,19 +33,18 @@
 - **Sheet 1:** `ticket` — raw ticket data with `cms_id`, `created_at`, `closed_at`
 - **Sheet 2:** `feedbacks` — feedback data linked via `cms_id`
 
-**Q1 — VLOOKUP:**  
-Used `VLOOKUP` with `cms_id` as the key to pull `created_at` from the `ticket` sheet into the `feedbacks` sheet.
+**Q1 — INDEX-MATCH:**  
+Used `INDEX-MATCH` with `cms_id` as the key to pull `created_at` from the `ticket` sheet into the `feedbacks` sheet. INDEX-MATCH was preferred over VLOOKUP for more flexible and reliable column lookups.
 
 **Q2 — Same Day & Same Hour Analysis:**  
-- Added a "Same Day?" helper column comparing `INT(created_at) = INT(closed_at)`
-- Added a "Same Hour?" helper column using `HOUR()` function on both timestamps
-- Used `COUNTIFS` to count matching tickets per outlet
+- Added a combined helper column using the formula `=AND(INT(B2)=INT(C2), HOUR(B2)=HOUR(C2))` — `INT()` compares the date portion and `HOUR()` compares the hour portion of `created_at` and `closed_at` in a single check
+- Used `COUNTIF` on this column to count `TRUE` values per outlet
 
 ---
 
 ## 🐍 Phase 3 — Python Proficiency
 
-**Tool Used:** Python 3.x
+**Tool Used:** google colab
 
 ### Script 1: `01_Time_Converter.py`
 Converts total minutes into a human-readable format (e.g., `130` → `2 hrs 10 minutes`).
@@ -61,9 +62,9 @@ Removes duplicate characters from a string while preserving the original order.
 
 | Area         | Tool / Language        |
 |--------------|------------------------|
-| SQL          | MySQL Workbench        |
+| SQL          | Postgreqsl pgadmin     |
 | Spreadsheets | Microsoft Excel        |
-| Programming  | Python 3.x             |
+| Programming  | Google Colab           |
 
 ---
 
